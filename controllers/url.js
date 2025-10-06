@@ -31,3 +31,16 @@ import URL from '../models /url.js';
 
 }
 
+export const handleAnalyticsData = async (req, res) =>
+{
+    const shortId = req.params.shortId;
+
+    const result = await URL.findOne({where : {shortId}});
+    console.log(result)
+
+    return res.json({
+        totalClicks : result.visitHistory.length ,
+        analytics : result.visitHistory
+    })
+}
+
