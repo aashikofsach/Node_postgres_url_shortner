@@ -5,15 +5,21 @@ import urlRoute from './routes/url.js'
 
 import dbInit from './dbInit.js';
 import URL from './models /url.js';
+import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
+import staticRoute from "./routes/staticRouter.js";
 
 const app = express() ;
 const PORT = 8001 ;
 dbInit();
+app.set('view engine', 'ejs');
+app.set("views", path.resolve('./views'))
 
 app.use(express.json());
 
-app.use('/url', urlRoute)
+app.use('/url', urlRoute);
+app.use('/', staticRoute)
+
 
 app.get('/:shortId', async (req, res)=>{
     // console.log(req.params)
@@ -34,7 +40,16 @@ app.get('/:shortId', async (req, res)=>{
 
 })
 
-app.get('/analytics/:shortId', handleAnalyticsData)
+app.get('/analytics/:shortId', handleAnalyticsData);
+app.get('/url/test', async (req, res)=>
+{
+    const result = await URL.findAll({raw : true});
+    console.log(result, '843785')
+    return res.render('home', {
+        urls : result
+    })
+})
+
 
 app.listen(PORT , () => console.log(`server started on port : ${PORT}`));
 
