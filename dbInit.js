@@ -13,6 +13,7 @@ import sequelize from './config/db.js';
 
 
 
+
 async function dbInit() {
     try
     {

@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db";
-import e from "express";
+import sequelize from "../config/db.js";
+
 
 const User = sequelize.define('User',{
   id : {

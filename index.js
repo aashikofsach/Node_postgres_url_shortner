@@ -8,6 +8,8 @@ import URL from './models /url.js';
 import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
 import staticRoute from "./routes/staticRouter.js";
+import userRouter from './routes/userRouter.js';
+
 
 const app = express() ;
 const PORT = 8001 ;
@@ -20,6 +22,7 @@ app.use(express.urlencoded({extended : true}))
 
 app.use('/url', urlRoute);
 app.use('/', staticRoute)
+app.use('/user',userRouter);
 
 
 app.get('/:shortId', async (req, res)=>{
