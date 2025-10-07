@@ -27,6 +27,31 @@
         </form>
       
     </div>
+    <% if (locals.urls) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>S. No</th>
+                    <th>shortId</th>
+                    <th>redirect_url</th>
+                    <th>No. of clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% locals.urls.forEach((url, index) => { %>
+                    <tr>
+                        <td><%= index = 1 %></td>
+                        <td><%= url.shortId %></td>
+                        <td><%= url.redirectUrl%></td>
+                        <td><%= url.visitHistory.length %></td>
+
+                    </tr>
+                 
+                <% }) %>
+            </tbody>
+        </table>
+     
+    <% } %>
 
 </body>
 </html>
