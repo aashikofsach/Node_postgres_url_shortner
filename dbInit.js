@@ -1,7 +1,7 @@
 import sequelize from './config/db.js';
 
 
-//below code is used to create first time table in db ;
+//below code is used to create first time, table in db ;
 (async () => {
   try {
     await sequelize.sync({ alter: true }); // or { force: true } for dev reset

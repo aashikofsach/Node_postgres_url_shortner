@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -8,10 +13,16 @@
 <body>
     <h1>Hello from server </h1>
     <p>This is our homepage</p>
+    <!-- This thing is rendered conditionally  -->
+     <% if (locals.id) { %>
+        <p>URL Generated : http://localhost:8001/<%= locals.id %> </p>
+      
+     <% } %>
+
     <div>
         <form action="/url" method="post">
               <label >Enter your original URL</label>
-        <input type="text" placeholder="Enter the original url" name="">
+        <input type="text" placeholder="Enter the original url" name="url">
         <button type="submit">Generate</button>
         </form>
       

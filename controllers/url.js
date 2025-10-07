@@ -23,9 +23,14 @@ import URL from '../models /url.js';
     })
     console.log('here till line 24')
 
-    return res.json({
-        id:shortId
+    return res.render('home',{
+        id : shortId
+
     })
+
+    // return res.json({
+    //     id:shortId
+    // })
 
 
 
