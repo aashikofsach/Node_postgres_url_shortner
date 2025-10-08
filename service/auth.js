@@ -22,6 +22,8 @@ export function getUser(token)
     }
 try {
 
+    let value = jwt.verify(token , secret);
+    console.log(value , 'radhe radhe')
    return jwt.verify(token , secret)
     
 } catch (error) {
