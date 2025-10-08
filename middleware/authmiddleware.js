@@ -34,6 +34,7 @@ import { getUser } from "../service/auth.js";
     // }
 
     let user = getUser(uuid);
+
     console.log('if we have user here ', user)
     // if(!user)
     // {

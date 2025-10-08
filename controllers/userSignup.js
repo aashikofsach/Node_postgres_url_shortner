@@ -27,9 +27,9 @@ export const handleUserLogin = async (req, res) =>
         return res.render('login', {error : "Invalid User Credentials "})
     }
 
-    const sessionId = uuidv4() ;
-    setUser(sessionId , user);
-    res.cookie('uid', sessionId)
+    // const sessionId = uuidv4() ;
+    const token =setUser( user);
+    res.cookie('uid', token)
 
     console.log(user, "line number 27")
     // return res.render('home')
