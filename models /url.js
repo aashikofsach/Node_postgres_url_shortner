@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/db.js';
 // const 
 // here we have to import the sequelize 
@@ -28,6 +28,14 @@ const URL = sequelize.define('URL',{
         type : DataTypes.JSONB,
 defaultValue : [] 
 
+    },
+    createdBy :{
+        type : DataTypes.INTEGER,
+        allowNull : false ,
+        references :{
+            Model : "users",
+            key : 'id'
+        }
     }
 
 }, {

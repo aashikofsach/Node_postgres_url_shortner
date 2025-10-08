@@ -1,12 +1,17 @@
 import express from 'express';
 import URL from '../models /url.js';
+import { where } from 'sequelize';
 
 const router = express.Router() ;
 
 router.get('/', async (req, res)=>
 {
-    const allUrls  = await URL.findAll({raw:true});
-    console.log(allUrls)
+    if(!req.user)
+    {
+        return res.redirect('/login')
+    }
+    const allUrls  = await URL.findAll({where:{createdBy : req.user.id},raw:true});
+    console.log(allUrls, 'jai shree ram ')
     return res.render('home', {
         urls : allUrls
 

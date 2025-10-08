@@ -10,7 +10,7 @@ import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
 import staticRoute from "./routes/staticRouter.js";
 import userRouter from './routes/userRouter.js';
-import accessToLogin from './middleware/authmiddleware.js';
+import accessToLogin, { checkAuth } from './middleware/authmiddleware.js';
 // import accessToLogin from './middleware/auth.js';
 // import { accessToLogin } from './middleware/auth.js';
 
@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(cookieParser())
 
 app.use('/url', accessToLogin, urlRoute);
-app.use('/' , staticRoute)
+app.use('/' , checkAuth, staticRoute)
 app.use('/user',userRouter);
 
 

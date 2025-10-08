@@ -16,7 +16,8 @@ import URL from '../models /url.js';
     await URL.create({
         shortId : shortId,
         redirectUrl : body.url,
-        visitHistory : []
+        visitHistory : [],
+        createdBy : req.user.id
 
 
 
