@@ -1,4 +1,5 @@
 import express from 'express'
+import cookieParser from 'cookie-parser';
 
 // const urlRoute = require('./routes/url');
 import urlRoute from './routes/url.js'
@@ -9,6 +10,10 @@ import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
 import staticRoute from "./routes/staticRouter.js";
 import userRouter from './routes/userRouter.js';
+import accessToLogin from './middleware/authmiddleware.js';
+// import accessToLogin from './middleware/auth.js';
+// import { accessToLogin } from './middleware/auth.js';
+
 
 
 const app = express() ;
@@ -18,10 +23,11 @@ app.set('view engine', 'ejs');
 app.set("views", path.resolve('./views'))
 
 app.use(express.json());
-app.use(express.urlencoded({extended : true}))
+app.use(express.urlencoded({extended : true}));
+app.use(cookieParser())
 
-app.use('/url', urlRoute);
-app.use('/', staticRoute)
+app.use('/url', accessToLogin, urlRoute);
+app.use('/' , staticRoute)
 app.use('/user',userRouter);
 
 
