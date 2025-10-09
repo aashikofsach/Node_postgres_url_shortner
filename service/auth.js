@@ -1,6 +1,3 @@
-
-
-
 import jwt from "jsonwebtoken";
 const secret = 'aashu@123'
 

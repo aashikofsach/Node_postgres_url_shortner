@@ -29,11 +29,12 @@ export const handleUserLogin = async (req, res) =>
 
     // const sessionId = uuidv4() ;
     const token =setUser( user);
-    res.cookie('uid', token)
+    // res.cookie('uid', token). we are now using response way to instead of cookies 
 
     console.log(user, "line number 27")
     // return res.render('home')
-        return res.redirect('/')
+        // return res.redirect('/')
+        return res.json({token})
 
 
 }

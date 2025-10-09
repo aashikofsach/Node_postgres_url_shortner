@@ -26,9 +26,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(cookieParser())
 
+app.use('/user',userRouter);
+
 app.use('/url', accessToLogin, urlRoute);
 app.use('/' , checkAuth, staticRoute)
-app.use('/user',userRouter);
 
 
 app.get('/:shortId', async (req, res)=>{
