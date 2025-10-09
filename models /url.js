@@ -29,6 +29,7 @@ const URL = sequelize.define('URL',{
 defaultValue : [] 
 
     },
+   
     createdBy :{
         type : DataTypes.INTEGER,
         allowNull : false ,

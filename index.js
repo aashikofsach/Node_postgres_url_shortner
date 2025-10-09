@@ -10,7 +10,7 @@ import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
 import staticRoute from "./routes/staticRouter.js";
 import userRouter from './routes/userRouter.js';
-import accessToLogin, { checkAuth } from './middleware/authmiddleware.js';
+import  { checkAuthentication, restrictTo } from './middleware/authmiddleware.js';
 // import accessToLogin from './middleware/auth.js';
 // import { accessToLogin } from './middleware/auth.js';
 
@@ -24,12 +24,14 @@ app.set("views", path.resolve('./views'))
 
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use('/user',userRouter);
+app.use(checkAuthentication)
 
-app.use('/url', accessToLogin, urlRoute);
-app.use('/' , checkAuth, staticRoute)
+app.use('/user',restrictTo(['normal']),userRouter);
+
+app.use('/url', urlRoute);
+app.use('/' , staticRoute)
 
 
 app.get('/:shortId', async (req, res)=>{
