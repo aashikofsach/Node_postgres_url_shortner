@@ -1,5 +1,5 @@
 import express from 'express';
-import URL from '../models /url.js';
+import URL from '../models/url.js';
 import { where } from 'sequelize';
 
 const router = express.Router() ;

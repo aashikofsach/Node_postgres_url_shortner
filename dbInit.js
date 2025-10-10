@@ -2,16 +2,16 @@ import sequelize from './config/db.js';
 
 
 //below code is used to create first time, table in db ;
-(async () => {
-  try {
-    await sequelize.sync({ alter: true }); // or { force: true } for dev reset
-    console.log("All models synced!");
-  } catch (err) {
-    console.error("Error syncing DB:", err);
-  }
-})();
+// (async () => {
+//   try {
+//     await sequelize.sync({ alter: true }); // or { force: true } for dev reset
+//     console.log("All models synced!");
+//   } catch (err) {
+//     console.error("Error syncing DB:", err);
+//   }
+// })();
 
-
+console.log('running')
 
 
 async function dbInit() {

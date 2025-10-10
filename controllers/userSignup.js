@@ -1,13 +1,18 @@
 
-import User from "../models /users.js";
+// import User from "../models/users.js";
 import { v4 as uuidv4 } from 'uuid';
 import { setUser, getUser } from "../service/auth.js";
+import User from '../models/users.js';
 
  export const handlerUserSignup = async (req , res)=>
 {
     const {id , name , email , password } = req.body ;
+        console.log('till here 1')
+
 
     const newUser = await User.create({id , name , email , password})
+        console.log('till here 2')
+
     // console.log(newUser)
 
 

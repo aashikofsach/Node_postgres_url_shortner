@@ -4,11 +4,12 @@ import { getUser } from "../service/auth.js";
 
 export function checkAuthentication(req, res , next)
 {
+    console.log('here code')
     const authorizationHeaderValue = req.headers['authorization'];
     req.user = null 
     if(!authorizationHeaderValue || !authorizationHeaderValue.startsWith('Bearer'))
     {
-        next();
+      return  next();
     }
 
     const token  = authorizationHeaderValue.split(' ')[1];

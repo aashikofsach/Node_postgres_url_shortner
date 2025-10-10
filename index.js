@@ -5,12 +5,13 @@ import cookieParser from 'cookie-parser';
 import urlRoute from './routes/url.js'
 
 import dbInit from './dbInit.js';
-import URL from './models /url.js';
+import URL from './models/url.js';
 import path from "path"
 import { handleAnalyticsData } from './controllers/url.js';
 import staticRoute from "./routes/staticRouter.js";
 import userRouter from './routes/userRouter.js';
 import  { checkAuthentication, restrictTo } from './middleware/authmiddleware.js';
+import sequelize from './config/db.js';
 // import accessToLogin from './middleware/auth.js';
 // import { accessToLogin } from './middleware/auth.js';
 
@@ -18,7 +19,14 @@ import  { checkAuthentication, restrictTo } from './middleware/authmiddleware.js
 
 const app = express() ;
 const PORT = 8001 ;
-dbInit();
+ dbInit();
+
+try {
+    await sequelize.sync({ alter: true });
+    console.log("All models synced!");
+} catch (err) {
+    console.error("Error syncing DB:", err);
+}
 app.set('view engine', 'ejs');
 app.set("views", path.resolve('./views'))
 
@@ -28,7 +36,7 @@ app.use(cookieParser());
 
 app.use(checkAuthentication)
 
-app.use('/user',restrictTo(['normal']),userRouter);
+app.use('/user',userRouter);
 
 app.use('/url', urlRoute);
 app.use('/' , staticRoute)
