@@ -78,7 +78,7 @@ console.log('aadi')
     console.log("✅ All models synced with database!");
 
     // Start Express server only after sync is successful
-    app.listen(PORT, () => console.log(`🚀 Server started on port: ${PORT}`));
+    // app.listen(PORT, () => console.log(`🚀 Server started on port: ${PORT}`));
 } catch (err) {
     console.error("❌ Error syncing DB:", err);
 }
