@@ -19,14 +19,14 @@ import sequelize from './config/db.js';
 
 const app = express() ;
 const PORT = 8001 ;
- dbInit();
+//  dbInit();
 
-try {
-    await sequelize.sync({ alter: true });
-    console.log("All models synced!");
-} catch (err) {
-    console.error("Error syncing DB:", err);
-}
+// try {
+//     await sequelize.sync({ alter: true });
+//     console.log("All models synced!");
+// } catch (err) {
+//     console.error("Error syncing DB:", err);
+// }
 app.set('view engine', 'ejs');
 app.set("views", path.resolve('./views'))
 
@@ -69,7 +69,23 @@ app.get('/url/test', async (req, res)=>
     return res.render('home', {
         urls : result
     })
-})
+});
+const startServer = async () => { try { // Initialize models and associations 
+dbInit();
+console.log('aadi')
+    // Wait for Sequelize to sync models with DB
+    await sequelize.sync({ alter: true });
+    console.log("✅ All models synced with database!");
+
+    // Start Express server only after sync is successful
+    app.listen(PORT, () => console.log(`🚀 Server started on port: ${PORT}`));
+} catch (err) {
+    console.error("❌ Error syncing DB:", err);
+}
+};
+
+startServer();
+
 
 
 app.listen(PORT , () => console.log(`server started on port : ${PORT}`));
