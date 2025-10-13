@@ -29,7 +29,7 @@ app.use(cookieParser())
 app.use('/user',userRouter);
 
 app.use('/url', accessToLogin, urlRoute);
-app.use('/' , checkAuth, staticRoute)
+app.use('/' , staticRoute)
 
 
 app.get('/:shortId', async (req, res)=>{
