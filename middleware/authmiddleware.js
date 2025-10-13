@@ -1,4 +1,5 @@
 
+import { ConnectionRefusedError } from "sequelize";
 import { getUser } from "../service/auth.js";
 
 
@@ -6,9 +7,10 @@ export function checkAuthentication(req, res , next)
 {
     const authorizationHeaderValue = req.headers['authorization'];
     req.user = null 
+    console.log(authorizationHeaderValue, "line 10")
     if(!authorizationHeaderValue || !authorizationHeaderValue.startsWith('Bearer'))
     {
-        next();
+       return next();
     }
 
     const token  = authorizationHeaderValue.split(' ')[1];
@@ -24,11 +26,12 @@ export function checkAuthentication(req, res , next)
 {
     return function(req, res , next)
     {
+        console.log('line 29 authfile')
         if(!req.user)
         {
             return res.redirect('/login')
         }
-        if(!roles.includes[req.user.role] )
+        if(!roles.includes(req.user.role) )
             return res.end("UnAuthorized")
         return next() ;
     }

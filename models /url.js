@@ -34,7 +34,7 @@ defaultValue : []
         type : DataTypes.INTEGER,
         allowNull : false ,
         references :{
-            Model : "users",
+            model : "users",
             key : 'id'
         }
     }
